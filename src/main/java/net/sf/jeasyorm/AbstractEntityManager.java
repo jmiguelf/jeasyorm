@@ -77,6 +77,7 @@ public abstract class AbstractEntityManager extends EntityManager {
                 }
                 try {
                     Object v = getValue(rs, index, fi.getType(), sqlType);
+                    if (rs.wasNull()){v=null;}
                     set(o, fi, v);
                 } catch (RuntimeSQLException e) {
                     throw new RuntimeSQLException("Can't read column '" + columnName + "'", e);
